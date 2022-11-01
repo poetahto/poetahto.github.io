@@ -1,14 +1,12 @@
-- poetools (July 2022-Present)
-- Conquest (August 2021-Present)
-- Grapple (September-October 2022)
-- Skywalk (June 2022)
-- Pestilence (December-May 2022)
-- Crossfire: Alt-Space (February 2022)
-- City Clicker (January 2022)
-- Connector (June 2021)
-- Kappi (May 2021)
-- Arachnodroid (April 2021)
-- Storm Chaser (January 2021)
-- Ruins of Artemis (December 2020)
-- Bow Game (September 2020)
-- Sleepy (July-August 2020)
+- poetools (July 2022-Present) https://github.com/poetahto/poetools
+- Grapple (September-October 2022) https://github.com/poetahto/AGLTeam11W1
+- Skywalk (June 2022) https://github.com/poetahto/Skywalk https://poetahto.itch.io/skywalk
+- Pestilence (December-May 2022) https://github.com/AztecGameLab/LongTermGame6 https://aztec-game-lab.itch.io/pestilence
+- Crossfire: Alt-Space (February 2022) https://github.com/poetahto/IGDA-2022-GameJam https://grahamsanders.itch.io/crossfire-alt-space
+- City Clicker (January 2022) https://github.com/poetahto/AGL-Winter-Jam-2022 https://grahamsanders.itch.io/city-clicker
+- Connector (June 2021) https://github.com/poetahto/GMTKJam https://poetahto.itch.io/connector
+- Kappi (May 2021) https://github.com/AztecGameLab/LongTermGame5 https://aztec-game-lab.itch.io/kappi
+- Arachnodroid (April 2021) https://kainkun.itch.io/arachnodroid
+- Storm Chaser (January 2021) https://github.com/poetahto/storm-chaser https://poetahto.itch.io/storm-chaser
+- Ruins of Artemis (December 2020) https://github.com/AztecGameLab/LongTermGame4 https://aztec-game-lab.itch.io/ruins-of-artemis
+- Bow Game (September 2020) https://github.com/poetahto/bowgame
