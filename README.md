@@ -1,4 +1,3 @@
-# Daniel Walls - Portfolio
 - poetools (July 2022-Present)
 - Conquest (August 2021-Present)
 - Grapple (September-October 2022)
