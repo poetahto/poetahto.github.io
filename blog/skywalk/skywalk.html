@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Daniel Walls | Skywalk </title>
+        <link rel="stylesheet" href="../style_blog.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div id="particles"></div>
+        <div class="header">
+
+            <h1><strong>Skywalk</strong></h1>
+
+            <p><em>Developed by Daniel Walls and <a href="https://github.com/chmilk1" target="_blank">James Maron</a> for the AGL Summer 2022 Game Jam over the course of a week.</em></p>
+
+        </div>
+        <div class="content">
+
+            <h2>Development Process</h2>
+
+            <p>At the start of the Jam, we made several important decisions that would impact the way the rest of the week would play out.</p>
+
+            <ol>
+                <li>Using the <strong>Unity</strong> game engine.</li>
+                <li>Using the community-developed package <strong><a href="https://github.com/sabresaurus/SabreCSG" target="_blank">SabreCSG</a></strong> for level design.</li>
+                <li>Making the game about tightrope walking.</li>
+            </ol>
+
+            <p>
+                <img src="skywalk.gif" style="float:right;width:35%;">
+                The Unity decision was fairly straightforward - we both had a lot of previous expereince with it at this point. We also wanted to experiment with SabreCSG as a potential alternative to <strong>ProBuilder</strong> (the default Unity level-design tool) since we had found that ProBuilder struggled in certain areas. Mainly, ProBuilder struggled a lot with interior scenes because it didn&#39;t have a good workflow for editing holes into the enviroment. On the other hand, CSG-based level design tools handle these use cases very well; holes can be added and removed from level geometry in a non-destructive manner, which made rapid prototyping and iteration on our levels possible. SabreCSG is a popular option for doing this, and has been around for quite some time, establishing itself as a time-tested solution for the community. As for the last point, I settled on the idea after hearing one of my grandparents talking about a tightrope-walking class they had taken in high school. It seemed to be a good fit for the theme (which was &quot;threading the needle&quot;) and could lend itself to interesting level design opportunities, along with gameplay programming.
+            </p>
+
+            <p>When we started development, we had decided that James would take the brunt of the level design work (finishing the first two levels) while I would create whatever gameplay systems we needed for everything to work. Surprisingly, all of the programming needed for this Jam was easily finished within a day or two - largely thanks to the use of a reusable player controller I had previously developed. The only real systems that needed to be created were the tightrope and the death effect; of which both proved to be a fun challenge of implementation.</p>
+
+            <p>
+                <img src="rope_effects.png" style="float:right;">
+                I implemented the rope as a group of behaviors that were subclasses of <strong>RopeEffect</strong>. This was mainly because I didn&#39;t know what I needed to add to make the rope feel the way I wanted to, and by following the <a href="https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle" target="_blank">open-closed principle</a> I was led to this structure. Hence, in order to add a new effect, I simply had to create a new subclass of <strong>RopeEffect</strong> and add it to the rope GameObject. This had a bunch of advantages! I could experiment and isolate things that didn&#39;t work quickly in the editor, and even create unique ropes by adding or removing these components on a case-by-case basis. It also lead to nice and consice, clear, and focused code (none of the rope effects had more than 50 lines of code, in fact the avarage was ~25). However, there were some drawbacks - when the different effects needed to reference other components (for example, the camera-tilting effect needed to reference the camera transform) I had to be careful of the indirect way they could interact with each other. For example, if two effects both needed to manipulate the camera&#39;s rotation, they could end up overwriting each other&#39;s changes, leading to snapping or otherwise glitchy behavior. These issues were harder to spot with such a modular and seperated design, since each effect was isolated into its own file. A general solution to this problem could be wrapping these desired components with an API that handles shared use more gracefully - perhaps by assigning priorities or a clever additive / subtractive combination.
+            </p>
+
+            <p>
+                <img src="skywalk_death.gif" style="float:left;width:35%">
+                The death system was pretty simple - the idea was that you would die when you fell from a high-enough distance or a certain amount of time had passed while falling. I hooked into the physics callbacks to apply a cut-to-black and play the death sound before reloading you to the most recent respawn point. In the past, I probably would have tried to move the cut-to-black and audio cues into a more modular event-driven design. Nowadays, I&#39;ve found that I&#39;m a bit more pragmatic when it comes to this kind of refactoring - it would feel a bit too much like a premature optimization. The death system script doesn&#39;t bother itself with any of the details about playing audio or visual effects - it simply calls the functions that other objects provide to it. As such, its pretty easy to read and follow the logic, while at the same time keeping all the relevent logic in the same place for easy debugging and iteration. Also, after going all-in on editor events in previous projects, I have become a bit disillusioned when it comes to their effects on readability, the flow of logic, and development time (especially for simple projects, such as this game jam).
+            </p>
+
+            <p>A feature that ended up not making it into the final product was a dialogue system! I wanted to give James the opportunity to add textual information in the form of text boxes when inspecting certain objects in the level. Maybe if we had time, we could have added NPC&#39;s that could talk to the character about the strange enviroment they found themselves in. Unfortunately, we just didn&#39;t have time to add these diologue pieces into the scenes - even though the code behind it worked. I ended up doing the bare-minimum implementation of the open source community package <a href="https://yarnspinner.dev/" target="_blank"><strong>Yarn Spinner</strong></a> to add these text boxes, which was actually a pretty easy process (it didn&#39;t take more than 15 minutes to get it working in-editor). I had never used Yarn Spinner before, but will definately keep it in my toolbelt for future projects.</p>
+
+            <p>
+                <img src="skywalk-wireframe.png" style="float:right;width:35%;">
+                Since I ended up finishing the programming work required for this project so early, I had free time before the submission was due. I decided to use it appending a third level after the first two James was working on. Note: I don&#39;t have a ton of level design experience, I wanted to use this project to learn and improve. During this process, I learned something really important: SabreCSG is <strong>bad</strong>. Like, <em>really&nbsp;</em>bad. Maybe we were using it incorrectly, which is fair, but if so they should really make the correct way more obvious. One of the main issues was the slowdown that came along with complex maps. By the end of the week, my level took around 5+ seconds to rebuild every time I made a change, which slowed iteration to a crawl. Maybe this could have been avoided by breaking the map into component parts to avoid rebuilding the entire thing for changes (like a smart compiliation system), but would have added a lot of maintenance and upkeep to the scene. Another issue was its failure to generate good UV&#39;s for lightmapping. In simple use cases it was great! But when the map geometry became more detailed, you could visibly notice seams at many places in the mesh, even with the lightmapper settings cranked up to very high levels of detail. The nail in the coffin was the lack of prefab support (probably since the package predated the prefab system). This made is a huge pain to move assets in between our levels, such as the elevator and the rope models. In the end, we lost valuable time to figuring out how to work through SabreCSG&#39;s faults, which could have been better spent bug-fixing and polishing the other aspects.
+            </p>
+
+            <p>
+                <img src="skywalk-evil-slope.png" style="float:left;width:35%">
+                This leads to a funny story; after the submission deadline had arrived, we had created a build of &quot;Skywalk&quot; and uploaded it to the submission page. Everyone who participated in the Jam (it was a relatively small group, no more than 20 people total) got together in a discord call to play everyone else&#39;s games and chat about the experience. One of my friends who was participating decided to live-stream his playthrough, and I was horrified to discover that the second level had an accidentally brutal challenge. See, one of the enviromental hazards I added early on in development was a &quot;wind zone&quot;, a trigger that would simply push you semi-randomly while walking around (this was calculated via perlin noise and translated into a directional vector). However, when we later made changes to make the tightrope hitbox smaller, it inadvertantly made the wind-zone section brutally difficult. And still, there was still one more problem. Even if you had managed to make it past the wind-zone, at the end of the tightrope you would notice a small lip, the place where the rope intersects with the platform it is attached to. In testing, we realized that you could get stuck on that lip, so we made sure to go through and add little slopes to let the player easily move onto the platform. However, at this crucial location in the second level the slope didn&#39;t work. It had accidentally been marked as a trigger (no collision) and was functionally useless, leaving players desperately shoving themselves into the wall, hoping they could lift themselves over that tiny ledge with enough effort (all the while battling the brutal wind-zone).
+            </p>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        <script src="../script.js"></script> 
+    </body>
+</html>
+
