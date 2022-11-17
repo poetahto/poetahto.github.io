@@ -61,6 +61,7 @@ div {
   border-radius: 10px;
   background: white;
   padding: 20px;
+  width: 25%;
   filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.2));
 }
 
@@ -98,7 +99,7 @@ div {
 }
 
 .thumbnail-image {
-  width: 400px;
+  width: 80%;
   margin: 20px;
   border: 8px solid #9CAFB7;
 }
