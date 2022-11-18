@@ -37,9 +37,15 @@ div {
 
 /* Classes */
 
+.intro h1 {
+  margin: auto;
+}
+
 .intro p {
   font-size: 30px;
 }
+
+/* Grid Styling */
 
 .grid-container {
   display: flex;
@@ -57,6 +63,16 @@ div {
   padding: 20px;
   width: 25%;
   filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.2));
+}
+
+@media screen and (max-width: 580px) {
+  .grid-item {
+    width: 100%;
+  }
+
+  .grid-container {
+    padding: 0px;
+  }
 }
 
 .grid-item a {
