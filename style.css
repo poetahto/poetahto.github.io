@@ -35,15 +35,9 @@ div {
   height: 100%;
 }
 
-#HomeImage {
-  filter: drop-shadow(3px 3px 1px rgba(0, 0, 0, 0.25));
-  width: 20%;
-  height: auto;
-}
-
 /* Classes */
 
-.Intro p {
+.intro p {
   font-size: 30px;
 }
 
@@ -104,49 +98,17 @@ div {
   border: 8px solid #9CAFB7;
 }
 
-.Spin {
-  animation: spin ease-in-out;
-}
-
-.Music {
-  display: flex;
-}
-
-.Music .item {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.Icons {
+.icons {
   padding-bottom: 50px;
   padding-top: 0px;
 }
 
-.Icons a {
+.icons a {
   text-decoration: none;
   color: white;
   padding: 10px;
 }
 
-.Icons span {
+.icons span {
   filter: drop-shadow(3px 3px 1px rgba(0, 0, 0, 0.25));
-}
-
-.Games img {
-  max-width: 50%;
-  max-height: 50%;
-}
-
-/* Animations */
-
-@keyframes spin {
-  0% {
-    transform:rotateZ(0deg);
-  }
-
-  100% {
-    transform:rotateZ(360deg);
-  }
 }

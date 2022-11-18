@@ -48,9 +48,10 @@ h1, h2, h3 {
 .content {
     background: #ffffff;
     line-height: 29.5px;
-    padding-top: 5px;
     padding: 4%;
+    padding-top: 1%;
     font-size: 18px;
+    margin-top: 0px;
     filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.2));
 }
 
