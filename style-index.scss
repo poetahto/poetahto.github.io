@@ -10,6 +10,7 @@ body {
     font-family: $font-stack;
     background: $color-dark;
     color: $color-light;
+    margin-bottom: 50px;
 }
 
 a, p {
@@ -47,6 +48,7 @@ a, p {
     height: min-content;
     filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.2));
     grid-row: 1;
+    padding: 15px;
 
     a {
         text-decoration: none;

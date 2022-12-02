@@ -3,6 +3,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #2E5C70;
   color: rgb(245, 255, 255);
+  margin-bottom: 50px;
 }
 
 a, p {
@@ -36,6 +37,7 @@ a, p {
   height: min-content;
   filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.2));
   grid-row: 1;
+  padding: 15px;
 }
 .grid-item a {
   text-decoration: none;
